@@ -20,7 +20,16 @@ let feturedProjects = [{
         dabur: {
             developedBy: '<a href="https://luxeveda.com/">Luxeveda</a>',
             client: 'Dabur International',
-            sumary: 'An overview of how we achieved a multilingual and multi-regional site.'
+            link: 'https://www.daburinternational.com/',
+            sumary: 'An overview of how we achieved a multilingual and multi-regional site.',
+            tags: ['Nuxt js', 'Graphql', 'Multi Language', 'Multi Region']
+        },
+        praanWebsite: {
+            developedBy: '<a href="https://luxeveda.com/">Luxeveda</a>',
+            client: 'Praan',
+            link: 'https://praan.io/',
+            sumary: 'Experience a sophisticated and user-friendly interface with Praan website',
+            tags: ['Vue js', 'GSAP']
         }
     },
 
