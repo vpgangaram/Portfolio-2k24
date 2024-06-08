@@ -6,10 +6,6 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'
 
-// AOS
-import 'aos/dist/aos.css'
-import AOS from 'aos'
-
 //vuetify
 import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
@@ -24,8 +20,6 @@ const vuetify = createVuetify({
 })
 
 app.use(createPinia())
-app.AOS = new AOS.init({});
 app.use(router)
 app.use(vuetify)
-app.use(AOS)
 app.mount('#app')
