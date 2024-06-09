@@ -6,12 +6,12 @@
                     Vinayak P G.
                 </h1>
                 <h1>
-                    Web Developer.
+                    Web <br v-if="smAndDown">Developer.
                 </h1>
             </v-col>
         </v-row>
         <v-row data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400" class="workHistory">
-            <v-col>
+            <v-col cols="12" sm="6">
                 <h4>
                     Current
                 </h4>
@@ -20,7 +20,7 @@
                     <a>Vtiger CRM</a>
                 </p>
             </v-col>
-            <v-col>
+            <v-col cols="12" sm="6">
                 <h4>
                     Past
                 </h4>
@@ -62,6 +62,18 @@
     .workHistory {
         a {
             border-bottom: 1px solid var(--text80);
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        .intro {
+            padding-bottom: 4rem;
+            h1 {
+                font-size: 3rem;
+                line-height: 1.25em;
+            }
         }
     }
 }

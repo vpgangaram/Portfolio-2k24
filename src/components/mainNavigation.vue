@@ -1,22 +1,22 @@
 <template>
     <v-conatiner class="navigationContainer">
         <v-row class="navigationRow">
-            <v-col>
+            <v-col cols="4">
                 <div class="leftSection">
-                    <a to="/"><h2>Knight.</h2></a>
+                    <a to="/">
+                        <h2>Knight.</h2>
+                    </a>
                     <label class="switch">
                         <input type="checkbox" :checked="theme.global.current.value.dark">
                         <span class="slider" @click="toggleTheme"></span>
                     </label>
                 </div>
             </v-col>
-            <v-col>
+            <v-col cols="">
                 <v-row class="navigationTabs">
-                    <ul class="navigation">
-                        <li><router-link :to="{ name: 'home' }">Work</router-link></li>
-                        <li><a href="https://www.instagram.com" target="_blank">Fun</a></li>
-                        <li><a href="about">About</a></li>
-                    </ul>
+                    <p><router-link :to="{ name: 'home' }">Work</router-link></p>
+                    <p><a href="https://www.instagram.com" target="_blank">Fun</a></p>
+                    <p><a href="about">About</a></p>
                 </v-row>
             </v-col>
         </v-row>
@@ -74,13 +74,15 @@ function toggleTheme() {
             align-items: center;
             justify-content: space-evenly;
 
-            .navigation {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                margin-top: 0;
-                margin-bottom: 0;
-                padding: 0;
+            p {
+                list-style-type: none;
+                font-family: 'Inter', sans-serif;
+                font-size: 1rem;
+                font-style: normal;
+                line-height: 19px;
+                letter-spacing: 0;
+                text-align: center;
+                white-space: nowrap;
             }
         }
     }
@@ -149,5 +151,13 @@ input:checked+.slider:before {
     background: #303136;
     /* change the value of second inset in box-shadow to change the angle and direction of the moon  */
     box-shadow: inset -3px -2px 5px -2px #8983f7, inset -10px -4px 0 0 #a3dafb;
+}
+
+@media (max-width: 600px ){
+    .leftSection {
+        h2 {
+            display: none;
+        }
+    }
 }
 </style>
