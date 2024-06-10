@@ -15,8 +15,8 @@
             <v-col cols="">
                 <v-row class="navigationTabs">
                     <p><router-link :to="{ name: 'home' }">Work</router-link></p>
-                    <p><a href="https://www.instagram.com" target="_blank">Fun</a></p>
-                    <p><a href="about">About</a></p>
+                    <p><a href="www.linkedin.com/in/vinayak-p-gangaramanavar" target="_blank">Linkedin</a></p>
+                    <p><router-link to="about">About</router-link></p>
                 </v-row>
             </v-col>
         </v-row>
@@ -153,11 +153,26 @@ input:checked+.slider:before {
     box-shadow: inset -3px -2px 5px -2px #8983f7, inset -10px -4px 0 0 #a3dafb;
 }
 
-@media (max-width: 600px ){
+@media (max-width: 600px) {
     .leftSection {
         h2 {
             display: none;
         }
+    }
+
+    .navigationContainer {
+        padding-top: 2rem;
+        .navigationRow {
+            .navigationTabs {
+                p {
+                    font-size: 0.8rem;
+                }
+            }
+        }
+    }
+
+    .router-link-active {
+        padding-top: 1rem;
     }
 }
 </style>

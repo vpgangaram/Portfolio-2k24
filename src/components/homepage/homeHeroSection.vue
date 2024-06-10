@@ -1,37 +1,37 @@
-<template>
-    <v-container fluid class="container">
-        <v-row data-aos="fade-up" data-aos-duration="1000">
-            <v-col class="intro">
-                <h1 class="faint">
-                    Vinayak P G.
-                </h1>
-                <h1>
-                    Web <br v-if="smAndDown">Developer.
-                </h1>
-            </v-col>
-        </v-row>
-        <v-row data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400" class="workHistory">
-            <v-col cols="12" sm="6">
-                <h4>
-                    Current
-                </h4>
-                <p>
-                    Front-end Developer at <br />
-                    <a>Vtiger CRM</a>
-                </p>
-            </v-col>
-            <v-col cols="12" sm="6">
-                <h4>
-                    Past
-                </h4>
-                <p>
-                    Web Developer at <br />
-                    <a>Luxeveda Brand services</a>
-                </p>
-            </v-col>
-        </v-row>
-    </v-container>
-</template>
+    <template>
+        <v-container fluid class="container">
+            <v-row data-aos="fade-up" data-aos-duration="1000">
+                <v-col class="intro">
+                    <h1 class="faint">
+                        Vinayak P G.
+                    </h1>
+                    <h1>
+                        Web <br v-if="smAndDown">Developer.
+                    </h1>
+                </v-col>
+            </v-row>
+            <v-row data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400" class="workHistory">
+                <v-col cols="12" sm="6">
+                    <h4>
+                        Past
+                    </h4>
+                    <p>
+                        Front-end Developer at <br />
+                        <a>Vtiger CRM</a>
+                    </p>
+                </v-col>
+                <v-col cols="12" sm="6">
+                    <h4>
+                        Current
+                    </h4>
+                    <p>
+                        Web Developer at <br />
+                        <a>Luxeveda Brand services</a>
+                    </p>
+                </v-col>
+            </v-row>
+        </v-container>
+    </template>
 
 <script type="ts" setup>
 </script>
@@ -70,6 +70,7 @@
     .container {
         .intro {
             padding-bottom: 4rem;
+
             h1 {
                 font-size: 3rem;
                 line-height: 1.25em;
