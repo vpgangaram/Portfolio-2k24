@@ -19,6 +19,4 @@ import MainNavigation from './components/mainNavigation.vue';
     overflow: hidden;
     scroll-behavior: smooth;
 }
-
-
 </style>
