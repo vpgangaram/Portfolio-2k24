@@ -15,6 +15,9 @@ import MainNavigation from './components/mainNavigation.vue';
 .v-container {
     max-width: 1168px;
     margin: auto;
+    width: 100vw;
+    overflow: hidden;
+    scroll-behavior: smooth;
 }
 
 

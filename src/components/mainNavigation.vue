@@ -15,7 +15,7 @@
             <v-col cols="">
                 <v-row class="navigationTabs">
                     <p><router-link :to="{ name: 'home' }">Work</router-link></p>
-                    <p><a href="www.linkedin.com/in/vinayak-p-gangaramanavar" target="_blank">Linkedin</a></p>
+                    <p><a href="https://www.linkedin.com/in/vinayak-p-gangaramanavar" target="_blank">Linkedin</a></p>
                     <p><router-link to="about">About</router-link></p>
                 </v-row>
             </v-col>
@@ -25,7 +25,6 @@
 
 <script type="ts" setup>
 import { useTheme } from 'vuetify'
-
 const theme = useTheme()
 
 function toggleTheme() {
@@ -43,7 +42,7 @@ function toggleTheme() {
 
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .navigationContainer {
     display: flex;
     padding-bottom: 5px;

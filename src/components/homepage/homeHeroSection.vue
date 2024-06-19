@@ -36,7 +36,7 @@
 <script type="ts" setup>
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .container {
     padding-top: 9rem !important;
 
