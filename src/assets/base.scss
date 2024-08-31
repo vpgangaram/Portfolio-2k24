@@ -69,6 +69,7 @@ body.dark {
   --bg1: rgba(255, 255, 255, 0.1);
   --bg2: rgba(255, 255, 255, 0.05);
   --text20: rgba(255, 255, 255, 0.2);
+  --inde: 1;
 }
 
 body.light {
@@ -81,4 +82,5 @@ body.light {
   --bg1: rgba(0, 0, 0, 0.06);
   --bg2: rgba(0, 0, 0, 0.02);
   --text20: rgba(0, 0, 0, 0.2);
+  --invertedImg: 0
 }

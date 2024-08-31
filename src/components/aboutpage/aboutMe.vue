@@ -1,8 +1,8 @@
 <template>
     <v-container fluid class="container">
-        <v-row data-aos-duration="1000" class="row1">
+        <v-row class="row1">
             <v-col class="intro" cols="12" lg="6" md="6" sm="12">
-                <div>
+                <div data-aos="fade-right" data-aos-easing="ease-in-cubic" data-aos-duration="800">
                     <h1 class="faint">
                         Hey There,
                     </h1>
@@ -10,16 +10,18 @@
                         I'm <br v-if="smAndDown">Vinayak.
                     </h1>
                 </div>
-                <p>I’m a resourceful professional who began as a curious coder, always eager to push the boundaries
+                <p data-aos="fade-up" data-aos-easing="ease-in-cubic" data-aos-duration="800">
+                    I’m a resourceful professional who began as a curious coder, always eager to push the boundaries
                     of
                     what's possible on the web. My journey led me to master JavaScript, various frameworks, and
                     Bootstrap, allowing me to quickly adapt to new technologies. Along the way, I developed a knack
                     for
                     crafting cutting-edge web designs and features. I thrive on solving complex code issues,
                     ensuring
-                    every user experiences seamless and efficient interactions.</p>
+                    every user experiences seamless and efficient interactions.
+                </p>
                 <a href="https://drive.google.com/file/d/15AevIKNMwCMNGf3hMIbMjHC9xJUHTC2C/view?usp=sharing"
-                    target="_blank" class="social-link">
+                    target="_blank" class="social-link" data-aos="fade-up" data-aos-easing="ease-in-sine" data-aos-duration="900">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                         aria-hidden="true" focusable="false" width="1em" height="1em"
                         style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);"
@@ -32,7 +34,7 @@
                 </a>
             </v-col>
             <v-col cols=""></v-col>
-            <v-col cols="12" lg="5" md="5" sm="12">
+            <v-col cols="12" lg="5" md="5" sm="12" data-aos-duration="800" data-aos="fade-left" data-aos-easing="ease-in-cubic">
                 <img src="/vinayakProfilePic.jpg" alt="vinayak Port folio" />
             </v-col>
         </v-row>
@@ -87,6 +89,7 @@
             flex-direction: row;
             justify-content: center;
             align-items: center;
+            margin-top: 50px;
 
             p {
                 line-height: 1.5;

@@ -6,7 +6,6 @@
                 <h1 class="faint">
                     Featured Projects.
                 </h1>
-                <div class="divider"> </div>
             </v-col>
         </v-row>
         <v-row class="workHistory">

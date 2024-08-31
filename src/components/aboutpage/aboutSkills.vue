@@ -1,12 +1,18 @@
 <template>
     <v-container fluid class="mainContainer">
+        <div class="divider"> </div>
         <v-row>
             <v-col cols="12">
-                <h2 class="faint">Skills Honed</h2>
+                <h2 class="faint intro">Skills Honed</h2>
             </v-col>
         </v-row>
         <v-row>
-            <v-col cols="6" v-for="skill in skills" class="mainCol" :key="skill.name">
+            <v-col
+                cols="6"
+                v-for="skill in skills"
+                class="mainCol"
+                :key="skill.name"
+            >
                 <img :src="skill.img" :class="imgClass" />
                 <h3>{{ skill.name }}</h3>
             </v-col>
@@ -14,56 +20,36 @@
     </v-container>
 </template>
 
-<script type="ts" setup>
-import { ref, watch } from 'vue';
-import { useTheme } from 'vuetify'
-const theme = useTheme()
+<script setup lang="ts">
+import { ref, watch, computed, onMounted } from 'vue';
+import { useTheme } from 'vuetify';
+
+const theme = useTheme();
 
 const skills = [
-    {
-        name: 'Front End Development',
-        img: '/frontend.png'
-    },
-    {
-        name: 'Vue.Js',
-        img: '/vuejs.png'
-    },
-    {
-        name: 'Javascript',
-        img: '/js.png'
-    },
-    {
-        name: 'Progressive Web Apps',
-        img: '/pwa.png'
-    },
-    {
-        name: 'Rest API',
-        img: '/api.png'
-    },
-    {
-        name: 'Bootstrap',
-        img: '/bootstrap.png'
-    },
-    {
-        name: 'Node Js',
-        img: '/nodejs.png'
-    }
-]
-
-const imgClass = ref('lightImg');
-
-watch(() => theme.global.current.value.dark, (newVal) => {
-    // imgClass.value = newVal.global.current.value.dark ? 'darkImg' : 'lightImg';
-    console.log(theme.global.current.value.dark);
-}, { immediate: true, deep: true });
+    { name: 'Front End Development', img: '/frontend.png' },
+    { name: 'Vue.Js', img: '/vuejs.png' },
+    { name: 'Javascript', img: '/js.png' },
+    { name: 'Progressive Web Apps', img: '/pwa.png' },
+    { name: 'Rest API', img: '/api.png' },
+    { name: 'Bootstrap', img: '/bootstrap.png' },
+    { name: 'Node Js', img: '/nodejs.png' },
+];
 </script>
 
 <style lang="scss" scoped>
 .mainContainer {
 
+    .intro {
+        padding-bottom: 7.5rem;
+    }
+
+    .faint {
+        color: var(--text20) !important;
+    }
+
     h2 {
         font-size: 88px;
-        font-style: normal;
         font-weight: 800 !important;
         line-height: 107px;
         margin-top: 3rem;
@@ -73,17 +59,13 @@ watch(() => theme.global.current.value.dark, (newVal) => {
         display: flex;
         align-items: center;
 
-        .lightImg,
         img {
             width: 100px;
             height: 100px;
             object-fit: contain;
             margin-right: 5rem;
+            filter: invert(var(--invertedImg));
         }
     }
-}
-
-.darkImg {
-    filter: invert(1)
 }
 </style>
