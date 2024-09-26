@@ -182,7 +182,6 @@ let feturedProjects = {
 
         .intro {
             padding-bottom: 2rem;
-            ;
         }
 
         .workHistory {
