@@ -1,59 +1,67 @@
 <template>
-    <v-conatiner class="navigationContainer">
+    <v-container class="navigationContainer">
         <v-row class="navigationRow">
             <v-col cols="4">
                 <div class="leftSection">
-                    <a to="/">
+                    <router-link to="/" class="brand-link">
                         <h2>Knight.</h2>
-                    </a>
+                    </router-link>
                     <label class="switch">
-                        <input type="checkbox" :checked="theme.global.current.value.dark">
-                        <span class="slider" @click="toggleTheme"></span>
+                        <input type="checkbox" :checked="isDark" @change="toggleTheme" />
+                        <span class="slider"></span>
                     </label>
                 </div>
             </v-col>
-            <v-col cols="">
+            <v-col>
                 <v-row class="navigationTabs">
                     <p><router-link :to="{ name: 'home' }">Work</router-link></p>
-                    <p><a href="https://www.linkedin.com/in/vinayak-p-gangaramanavar" target="_blank">Linkedin</a></p>
+                    <p><a href="https://www.linkedin.com/in/vinayak-p-gangaramanavar" target="_blank"
+                            rel="noreferrer">Linkedin</a></p>
                     <p><router-link to="about">About</router-link></p>
                 </v-row>
             </v-col>
         </v-row>
-    </v-conatiner>
+    </v-container>
 </template>
 
-<script type="ts" setup>
+<script setup lang="ts">
+import { computed, onMounted } from 'vue'
 import { useTheme } from 'vuetify'
+
 const theme = useTheme()
+const isDark = computed(() => theme.global.current.value.dark)
 
 function toggleTheme() {
-    // Toggle the theme in the global state
-    theme.global.current.value.dark = !theme.global.current.value.dark;
-    theme.value = theme.global.current.value.dark ? 'dark' : 'light';
-
-    // Update the body class based on the new theme
-    document.body.classList.remove(theme.global.current.value.dark ? 'light' : 'dark');
-    document.body.classList.add(theme.value);
-
-    // Store the new theme in localStorage
-    localStorage.setItem('theme', theme.value);
+    const nextTheme = isDark.value ? 'light' : 'dark'
+    theme.global.name.value = nextTheme
+    document.body.classList.remove('light', 'dark')
+    document.body.classList.add(nextTheme)
+    localStorage.setItem('theme', nextTheme)
 }
 
+onMounted(() => {
+    const savedTheme = localStorage.getItem('theme')
+    if (savedTheme) {
+        theme.global.name.value = savedTheme
+        document.body.classList.add(savedTheme)
+    }
+})
 </script>
 
 <style lang="scss" scoped>
 .navigationContainer {
     display: flex;
-    padding-bottom: 5px;
+    padding: 2rem 0 1rem;
     margin-right: auto;
     margin-left: auto;
     align-content: center;
-    padding-top: 3rem;
-
+    position: sticky;
+    top: 0;
+    z-index: 20;
 
     .navigationRow {
         align-items: center;
+        width: 100%;
 
         .leftSection {
             display: flex;
@@ -61,9 +69,19 @@ function toggleTheme() {
             align-items: center;
             justify-content: flex-start;
 
+            .brand-link:first-child {
+                border-bottom: unset !important;
+            }
+
+            .brand-link {
+                display: inline-flex;
+                align-items: center;
+            }
+
             h2 {
                 font-weight: 600;
-                margin-right: 30px;
+                margin-right: 1rem;
+                transition: color 220ms ease;
             }
         }
 
@@ -83,38 +101,42 @@ function toggleTheme() {
                 text-align: center;
                 white-space: nowrap;
             }
+
+            a {
+                position: relative;
+                transition: color 220ms ease;
+                padding-bottom: 0.2rem;
+
+                &:hover {
+                    color: var(--text);
+                }
+            }
         }
     }
 }
 
 .router-link-active {
-    border-top: var(--text) solid 4px;
-    padding-top: 1.5rem;
+    border-bottom: 2px solid var(--text);
     color: var(--text);
 }
 
-/* The switch - the box around the slider */
 .switch {
     display: block;
-    --width-of-switch: 3.5em;
-    --height-of-switch: 2em;
-    /* size of sliding icon -- sun and moon */
-    --size-of-icon: 1.4em;
-    /* it is like a inline-padding of switch */
+    --width-of-switch: 3.25em;
+    --height-of-switch: 1.8em;
+    --size-of-icon: 1.2em;
     --slider-offset: 0.3em;
     position: relative;
     width: var(--width-of-switch);
     height: var(--height-of-switch);
 }
 
-/* Hide default HTML checkbox */
 .switch input {
     opacity: 0;
     width: 0;
     height: 0;
 }
 
-/* The slider */
 .slider {
     position: absolute;
     cursor: pointer;
@@ -123,22 +145,21 @@ function toggleTheme() {
     right: 0;
     bottom: 0;
     background-color: rgb(216, 215, 215);
-    transition: .4s;
-    border-radius: 30px;
+    transition: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    border-radius: 999px;
 }
 
 .slider:before {
     position: absolute;
-    content: "";
-    height: var(--size-of-icon, 1.4em);
-    width: var(--size-of-icon, 1.4em);
-    border-radius: 20px;
+    content: '';
+    height: var(--size-of-icon, 1.2em);
+    width: var(--size-of-icon, 1.2em);
+    border-radius: 50%;
     left: var(--slider-offset, 0.3em);
     top: 50%;
     transform: translateY(-50%);
     background: linear-gradient(40deg, #ff0080, #ff8c00 70%);
-    ;
-    transition: .4s;
+    transition: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 input:checked+.slider {
@@ -146,9 +167,8 @@ input:checked+.slider {
 }
 
 input:checked+.slider:before {
-    left: calc(100% - (var(--size-of-icon, 1.4em) + var(--slider-offset, 0.3em)));
+    left: calc(100% - (var(--size-of-icon, 1.2em) + var(--slider-offset, 0.3em)));
     background: #303136;
-    /* change the value of second inset in box-shadow to change the angle and direction of the moon  */
     box-shadow: inset -3px -2px 5px -2px #8983f7, inset -10px -4px 0 0 #a3dafb;
 }
 
@@ -160,7 +180,8 @@ input:checked+.slider:before {
     }
 
     .navigationContainer {
-        padding-top: 2rem;
+        padding-top: 1.25rem;
+
         .navigationRow {
             .navigationTabs {
                 p {
@@ -168,10 +189,6 @@ input:checked+.slider:before {
                 }
             }
         }
-    }
-
-    .router-link-active {
-        padding-top: 1rem;
     }
 }
 </style>

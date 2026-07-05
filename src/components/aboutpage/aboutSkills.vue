@@ -9,13 +9,8 @@
             </v-col>
         </v-row>
         <v-row class="mainRow">
-            <v-col
-                cols="6"
-                v-for="skill in skills"
-                class="mainCol"
-                :key="skill.name"
-            >
-                <img :src="skill.img" :class="imgClass" />
+            <v-col cols="12" md="6" lg="6" xl="4" v-for="skill in skills" class="mainCol" :key="skill.name">
+                <img :src="getSkillImage(skill.website)" :alt="skill.name" class="skill-image" />
                 <h3>{{ skill.name }}</h3>
             </v-col>
         </v-row>
@@ -23,20 +18,32 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, computed, onMounted } from 'vue';
-import { useTheme } from 'vuetify';
-
-const theme = useTheme();
-
 const skills = [
-    { name: 'Front End Development', img: '/frontend.png' },
-    { name: 'Vue.Js', img: '/vuejs.png' },
-    { name: 'Javascript', img: '/js.png' },
-    { name: 'Progressive Web Apps', img: '/pwa.png' },
-    { name: 'Rest API', img: '/api.png' },
-    { name: 'Bootstrap', img: '/bootstrap.png' },
-    { name: 'Node Js', img: '/nodejs.png' },
-];
+    { name: 'Front End Development', website: 'developer.mozilla.org' },
+    { name: 'Vue.Js', website: 'vuejs.org' },
+    { name: 'React', website: 'react.dev' },
+    { name: 'HTML5', website: 'developer.mozilla.org' },
+    { name: 'CSS3', website: 'developer.mozilla.org' },
+    { name: 'SASS', website: 'sass-lang.com' },
+    { name: 'Javascript', website: 'www.javascript.com' },
+    { name: 'Progressive Web Apps', website: 'web.dev' },
+    { name: 'Rest API', website: 'developer.mozilla.org' },
+    { name: 'Bootstrap', website: 'getbootstrap.com' },
+    { name: 'Node Js', website: 'nodejs.org' },
+    { name: 'Express Js', website: 'expressjs.com' },
+    { name: 'MongoDB', website: 'mongodb.com' },
+    { name: 'MySQL', website: 'mysql.com' },
+    { name: 'Wordpress', website: 'wordpress.org' },
+    { name: 'GSAP', website: 'greensock.com' },
+    { name: 'Nuxt Js', website: 'nuxt.com' },
+    { name: 'Graphql', website: 'graphql.org' },
+    { name: 'Python', website: 'python.org' },
+    { name: 'Django', website: 'djangoproject.com' },
+]
+
+function getSkillImage(website: string) {
+    return `https://www.google.com/s2/favicons?domain=${website}&sz=128`
+}
 </script>
 
 <style lang="scss" scoped>
@@ -68,11 +75,11 @@ const skills = [
         display: flex;
         align-items: center;
 
-        img {
+        .skill-image {
             width: 100px;
             height: 100px;
             object-fit: contain;
-            margin-right: 5rem;
+            margin-right: 3rem;
             filter: invert(var(--invertedImg));
         }
     }

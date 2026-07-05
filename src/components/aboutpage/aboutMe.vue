@@ -20,7 +20,7 @@
                     ensuring
                     every user experiences seamless and efficient interactions.
                 </p>
-                <a href="https://drive.google.com/file/d/15AevIKNMwCMNGf3hMIbMjHC9xJUHTC2C/view?usp=sharing"
+                <a href="https://drive.google.com/file/d/1WI50-YLhaZ95SiNZWkS6E833-4RHniar/view?usp=sharing"
                     target="_blank" class="social-link" data-aos="fade-up" data-aos-easing="ease-in-sine" data-aos-duration="900">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                         aria-hidden="true" focusable="false" width="1em" height="1em"
@@ -51,10 +51,10 @@
     img {
         width: 100%;
         object-fit: cover;
-        object-position: bottom;
+        object-position: top;
         max-width: 100%;
         border-radius: 0.5rem;
-        max-height: 600px;
+        min-height: 700px;
     }
 
     .intro {
@@ -122,9 +122,9 @@
         }
 
         img {
-            object-position: bottom;
+            object-position: top;
             max-width: unset;
-            max-height: unset;
+            min-height: 500px;
         }
 
         .intro {

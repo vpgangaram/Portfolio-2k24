@@ -1,11 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-// AOS
 import 'aos/dist/aos.css'
 import AOS from 'aos'
 
-// componants
-import HomeView from "@/views/HomeView.vue"
+import HomeView from '@/views/HomeView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -20,12 +18,24 @@ const router = createRouter({
       name: 'about',
       component: () => import('@/views/about.vue')
     }
-  ]
+  ],
+  scrollBehavior() {
+    return { top: 0, behavior: 'smooth' }
+  }
 })
 
-router.beforeEach((to, from, next) => {
-  AOS.init(); // Initialize AOS
-  next();
-});
+router.beforeEach((_, __, next) => {
+  AOS.init({
+    once: true,
+    duration: 800,
+    offset: 80,
+    easing: 'ease-out-cubic'
+  })
+  next()
+})
+
+router.afterEach(() => {
+  requestAnimationFrame(() => AOS.refresh())
+})
 
 export default router

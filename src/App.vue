@@ -13,7 +13,6 @@ import MainNavigation from './components/mainNavigation.vue';
 
 <style scoped lang="scss">
 .v-container {
-    max-width: 1168px;
     margin: auto;
     width: 100vw;
     overflow: hidden;

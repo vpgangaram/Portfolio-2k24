@@ -1,6 +1,17 @@
 @import './base.scss';
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at top left, rgba(255, 0, 128, 0.08), transparent 30%),
+    linear-gradient(135deg, var(--bg-color), rgba(255, 255, 255, 0.95));
+}
+
 a {
   text-decoration: none;
   color: var(--text50);

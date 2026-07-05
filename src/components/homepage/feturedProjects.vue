@@ -1,124 +1,169 @@
 <template>
     <v-container fluid class="container">
-        <div class="divider"> </div>
+        <div class="divider"></div>
         <v-row data-aos="fade-up" data-aos-duration="1000">
             <v-col class="intro">
-                <h1 class="faint">
-                    Featured Projects.
-                </h1>
+                <h1 class="faint">Featured Projects.</h1>
             </v-col>
         </v-row>
         <v-row class="workHistory">
-            <v-col cols="12" v-for="(project, i) in feturedProjects" :key="i" data-aos="fade-up"
-                data-aos-duration="1000" data-aos-delay="200">
-                <v-row class="project-tags">
-                    <div class="tag" v-for="(tag, i) in project.tags" :key="i" data-aos="fade-left"
-                        :data-aos-duration="500 + i * 50" data-aos-delay="500">
-                        <p>{{ tag }}</p>
+            <v-col v-for="(project, index) in featuredProjects" :key="project.projectName" cols="12" md="6"
+                class="project-card-wrap d-flex" data-aos="fade-up" data-aos-duration="1000"
+                :data-aos-delay="120 + index * 80">
+                <article class="project-card">
+                    <div class="project-tags">
+                        <div class="tag" v-for="(tag, tagIndex) in project.tags" :key="tag">
+                            <p>{{ tag }}</p>
+                        </div>
                     </div>
-                </v-row>
-                <v-row>
-                    <v-col cols="12">
-                        <h2>{{ project.projectName }}</h2>
-                    </v-col>
-                </v-row>
-                <v-row>
-                    <v-col cols="12">
-                        <h3>{{ project.sumary }}</h3>
-                    </v-col>
-                </v-row>
-                <v-row>
-                    <v-col cols="12">
-                        <h3>Developed By: <span v-html="project.developedBy"></span></h3>
-                    </v-col>
-                </v-row>
-                <v-row>
-                    <v-col cols="12" class="imgBackground">
-                        <a :href="project.link" target="_blank">
-                            <img :src="project.ogImages" alt="">
+                    <h2>{{ project.projectName }}</h2>
+                    <h3>{{ project.summary }}</h3>
+                    <h3>Developed By: <span v-html="project.developedBy"></span></h3>
+                    <div class="imgBackground">
+                        <a :href="project.link" target="_blank" rel="noreferrer">
+                            <img :src="project.previewImage || fallbackImage" :alt="project.projectName"
+                                @error="handleImageError(project)" />
                         </a>
-                    </v-col>
-                </v-row>
+                    </div>
+                </article>
             </v-col>
         </v-row>
     </v-container>
 </template>
 
-<script type="ts" setup>
-let feturedProjects = {
-    // Luxeveda: {
-    dabur: {
+<script setup lang="ts">
+import { onMounted, ref } from 'vue'
+
+type ProjectItem = {
+    projectName: string
+    link: string
+    developedBy: string
+    client: string
+    summary: string
+    tags: string[]
+    previewImage?: string
+}
+
+const fallbackImage = '/images/commingsoon.jpg'
+const featuredProjects = ref<ProjectItem[]>([
+    {
         projectName: 'Dabur International',
-        ogImages: '/images/daburInternational.png',
         developedBy: '<a href="https://luxeveda.com/">Luxeveda</a>',
         client: 'Dabur International',
         link: 'https://www.daburinternational.com/',
-        sumary: 'An overview of how we achieved a multilingual and multi-regional site.',
+        summary: 'An overview of how we achieved a multilingual and multi-regional site.',
         tags: ['Nuxt js', 'Graphql', 'Multi Language', 'Multi Region']
     },
-    praanWebsite: {
+    {
         projectName: 'Praan.io',
-        ogImages: '/images/praan.png',
         developedBy: '<a href="https://luxeveda.com/">Luxeveda</a>',
         client: 'Praan',
         link: 'https://praan.io/',
-        sumary: 'Experience a sophisticated and user-friendly interface with Praan website',
+        summary: 'Experience a sophisticated and user-friendly interface with Praan website.',
         tags: ['Vue js', 'GSAP']
     },
-    expenditureAnalysis: {
-        projectName: 'Personal Expenditure Analysis',
-        ogImages: '/images/commingsoon.jpg',
-        developedBy: 'Vinayak',
-        client: 'Personel Project',
-        link: 'https://github.com/vpgangaram/python-personal-expenditure-analysis',
-        sumary: 'An expenditure tracker for the personal expenses',
-        tags: ['HTML', 'CSS', 'Python', 'Flask', 'Sqlit']
+    {
+        projectName: 'Godrej Properties',
+        developedBy: '<a href="https://luxeveda.com/">Luxeveda</a>',
+        client: 'Godrej Properties',
+        link: 'https://www.godrejproperties.com/',
+        summary: 'A modern approach to chemical industry solutions.',
+        tags: ['Vue js', 'Django', 'Python', 'SSO', 'Multi User Access', 'internal Platform']
     },
-    nikeClone: {
-        projectName: 'Nick Clone Website',
-        ogImages: '/images/commingsoon.jpg',
-        developedBy: 'Vinayak',
-        client: 'First Project',
-        link: 'https://github.com/vpgangaram/nickClone',
-        sumary: 'A clone of Nike website with cart functionality',
-        tags: ['HTML', 'CSS', 'Vue']
+    {
+        projectName: 'Luxeveda',
+        developedBy: '<a href="https://luxeveda.com/">Luxeveda</a>',
+        client: 'Luxeveda',
+        link: 'https://luxeveda.com/',
+        summary: 'A showcase of our expertise in crafting visually stunning and user-friendly websites.',
+        tags: ['Vue js', 'GSAP']
     },
-    aTopicAddAndEditor: {
-        projectName: 'Topic Selector',
-        ogImages: '/images/commingsoon.jpg',
-        developedBy: 'Vinayak',
-        client: 'Personel Project',
-        link: 'https://github.com/vpgangaram/easy_subtopic_maintopic_selection_menu',
-        sumary: 'A site where you can add main topics and sub topic for selection purpose',
-        tags: ['HTML', 'CSS']
+    {
+        projectName: 'Pi Industries',
+        developedBy: '<a href="https://luxeveda.com/">Luxeveda</a>',
+        client: 'Pi Industries',
+        link: 'https://www.piindustries.com/',
+        summary: 'A comprehensive solution for managing and optimizing industrial operations.',
+        tags: ['Wordpress', 'GSAP', 'Multi Language']
     },
-    portfoliOld: {
-        projectName: 'Mock Portfolio',
-        ogImages: '/images/commingsoon.jpg',
-        developedBy: 'Vinayak',
-        client: 'Personal Project',
-        link: 'https://github.com/vpgangaram/profile',
-        sumary: 'A mock portfolio created for practice purpose',
-        tags: ['HTML', 'CSS']
+    {
+        projectName: 'Britania international',
+        developedBy: '<a href="https://luxeveda.com/">Luxeveda</a>',
+        client: 'Britania international',
+        link: 'https://britannia-international.com/',
+        summary: 'A modern approach to chemical industry solutions.',
+        tags: ['Wordpress', 'GSAP', 'Multi Language']
+    },
+    {
+        projectName: 'Chembon Industries',
+        developedBy: '<a href="https://luxeveda.com/">Luxeveda</a>',
+        client: 'Chembon Industries',
+        link: 'https://www.chembondindia.com/',
+        summary: 'A modern approach to chemical industry solutions.',
+        tags: ['wordpress', 'GSAP', 'Multi Language']
+    },
+    {
+        projectName: 'Chembond Water',
+        developedBy: '<a href="https://luxeveda.com/">Luxeveda</a>',
+        client: 'Chembond Water',
+        link: 'https://www.chembondwater.com/',
+        summary: 'A modern approach to chemical industry solutions.',
+        tags: ['wordpress', 'GSAP', 'Multi Language']
+    },
+    {
+        projectName: 'cohizon',
+        developedBy: '<a href="https://luxeveda.com/">Luxeveda</a>',
+        client: 'cohoizon',
+        link: 'https://www.cohizon.com/',
+        summary: 'A modern approach to chemical industry solutions.',
+        tags: ['wordpress', 'GSAP', 'DIVI 5']
     }
-    // },
+])
+
+async function fetchOgImage(project: ProjectItem) {
+    if (!project.link) return
+
+    try {
+        const response = await fetch(`https://api.microlink.io/?url=${encodeURIComponent(project.link)}&screenshot=false`)
+        const data = await response.json()
+        const imageUrl = data?.data?.image?.url || data?.data?.image || data?.data?.logo?.url
+
+        if (imageUrl) {
+            project.previewImage = imageUrl
+        }
+    } catch {
+        project.previewImage = fallbackImage
+    }
 }
+
+function handleImageError(project: ProjectItem) {
+    if (project.previewImage !== fallbackImage) {
+        project.previewImage = fallbackImage
+    }
+}
+
+onMounted(() => {
+    featuredProjects.value.forEach((project) => {
+        project.previewImage = fallbackImage
+        void fetchOgImage(project)
+    })
+})
 </script>
 
 <style lang="scss" scoped>
 .container {
-    padding-top: 9rem;
+    padding-top: 6rem;
 
     .intro {
-        padding-bottom: 7.5rem;
+        padding-bottom: 3rem;
 
         h1 {
             -webkit-font-smoothing: antialiased;
-            font-size: 88px;
+            font-size: clamp(2.4rem, 5vw, 3.4rem);
             font-style: normal;
             font-weight: 800 !important;
-            line-height: 107px;
-            letter-spacing: 0em;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
             text-align: left;
             margin: 0;
         }
@@ -129,48 +174,86 @@ let feturedProjects = {
     }
 
     .workHistory {
+        .project-card-wrap {
+            margin-bottom: 1.5rem;
+            display: flex;
+        }
+
+        .project-card {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 1.4rem;
+            border-radius: 1.25rem;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.04);
+            transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 320ms ease;
+            will-change: transform;
+
+            &:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 18px 45px rgba(0, 0, 0, 0.08);
+            }
+        }
 
         .project-tags {
-            margin: 1.5rem 0 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin: 0 0 1rem;
 
             .tag {
-                padding: 8px 16px;
-                border-radius: .5rem;
+                padding: 0.45rem 0.8rem;
+                border-radius: 999px;
                 background-color: var(--bg1);
-                margin-right: 8px;
                 white-space: nowrap;
 
                 p {
-                    font-size: 14px;
+                    font-size: 0.82rem;
+                    color: var(--text80);
                 }
             }
         }
 
         h3 {
-            margin: 0;
+            margin: 0.25rem 0 0;
         }
 
         .imgBackground {
-            transition: all 0.3s ease-out;
-            height: 30rem;
-            background-color: var(--bg1);
-            margin: 2rem 0;
-            border-radius: .5rem;
+            transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 320ms ease;
+            min-height: clamp(12rem, 24vw, 16rem);
+            height: clamp(12rem, 24vw, 16rem);
+            background: linear-gradient(135deg, var(--bg1), var(--bg2));
+            margin: 1.5rem 0 0;
+            border-radius: 1rem;
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
+            will-change: transform;
+            flex: 1;
 
             a {
-                display: grid;
-                place-items: center;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                height: 100%;
             }
 
             img {
                 object-fit: contain;
-                width: 70%;
-                border-radius: 0.5rem
+                width: min(78%, 680px);
+                border-radius: 0.75rem;
+                transform: scale(1);
+                transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
+            }
+
+            &:hover img {
+                transform: scale(1.01);
             }
         }
     }
@@ -178,21 +261,22 @@ let feturedProjects = {
 
 @media (max-width: 600px) {
     .container {
-        padding-top: 4rem;
+        padding-top: 3rem;
 
         .intro {
-            padding-bottom: 2rem;
+            padding-bottom: 1.5rem;
         }
 
         .workHistory {
+            .project-card {
+                padding: 1.1rem;
+            }
+
             .imgBackground {
-                height: 20rem;
+                min-height: 12rem;
+                height: 12rem;
             }
         }
-    }
-
-    .tag {
-        margin-top: 10px;
     }
 }
 </style>
