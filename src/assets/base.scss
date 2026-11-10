@@ -8,6 +8,9 @@
   --bg1: rgba(0, 0, 0, 0.06);
   --bg2: rgba(0, 0, 0, 0.02);
   --text20: rgba(0, 0, 0, 0.2);
+  --surface: rgba(255, 255, 255, 0.72);
+  --border: rgba(0, 0, 0, 0.1);
+  --accent: #a64b37;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -34,7 +37,7 @@
 
 body {
   min-height: 100vh;
-  color: var(--color-text);
+  color: var(--text);
   background: var(--bg-color);
   transition:
     color 0.5s,
@@ -69,6 +72,9 @@ body.dark {
   --bg1: rgba(255, 255, 255, 0.1);
   --bg2: rgba(255, 255, 255, 0.05);
   --text20: rgba(255, 255, 255, 0.2);
+  --surface: rgba(255, 255, 255, 0.05);
+  --border: rgba(255, 255, 255, 0.12);
+  --accent: #ff9a7e;
   --inde: 1;
 }
 
@@ -82,5 +88,8 @@ body.light {
   --bg1: rgba(0, 0, 0, 0.06);
   --bg2: rgba(0, 0, 0, 0.02);
   --text20: rgba(0, 0, 0, 0.2);
-  --invertedImg: 0
+  --surface: rgba(255, 255, 255, 0.72);
+  --border: rgba(0, 0, 0, 0.1);
+  --accent: #a64b37;
+  --invertedImg: 0;
 }

@@ -1,282 +1,359 @@
 <template>
-    <v-container fluid class="container">
-        <div class="divider"></div>
-        <v-row data-aos="fade-up" data-aos-duration="1000">
-            <v-col class="intro">
-                <h1 class="faint">Featured Projects.</h1>
-            </v-col>
-        </v-row>
-        <v-row class="workHistory">
-            <v-col v-for="(project, index) in featuredProjects" :key="project.projectName" cols="12" md="6"
-                class="project-card-wrap d-flex" data-aos="fade-up" data-aos-duration="1000"
-                :data-aos-delay="120 + index * 80">
-                <article class="project-card">
-                    <div class="project-tags">
-                        <div class="tag" v-for="(tag, tagIndex) in project.tags" :key="tag">
-                            <p>{{ tag }}</p>
-                        </div>
-                    </div>
-                    <h2>{{ project.projectName }}</h2>
-                    <h3>{{ project.summary }}</h3>
-                    <h3>Developed By: <span v-html="project.developedBy"></span></h3>
-                    <div class="imgBackground">
-                        <a :href="project.link" target="_blank" rel="noreferrer">
-                            <img :src="project.previewImage || fallbackImage" :alt="project.projectName"
-                                @error="handleImageError(project)" />
-                        </a>
-                    </div>
-                </article>
-            </v-col>
-        </v-row>
-    </v-container>
+  <v-container id="projects" fluid class="container" aria-labelledby="projects-title">
+    <v-row data-aos="fade-up">
+      <v-col class="intro">
+        <p class="eyebrow">Selected work</p>
+        <h2 id="projects-title">Projects built to work in the real world.</h2>
+        <p class="section-copy">
+          A selection of frontend, commerce, and end-to-end product work. Project links open in a
+          new tab.
+        </p>
+      </v-col>
+    </v-row>
+    <v-row class="workHistory">
+      <v-col
+        v-for="(project, index) in featuredProjects"
+        :key="project.projectName"
+        cols="12"
+        md="6"
+        class="project-card-wrap d-flex"
+        data-aos="fade-up"
+        :data-aos-delay="Math.min(index * 70, 280)"
+      >
+        <article class="project-card">
+          <div class="project-heading">
+            <div>
+              <p class="project-role">{{ project.role }}</p>
+              <h3>{{ project.projectName }}</h3>
+            </div>
+            <a
+              class="project-link"
+              :href="project.link"
+              target="_blank"
+              rel="noopener noreferrer"
+              :aria-label="`Visit ${project.projectName} (opens in a new tab)`"
+              >Visit project <span aria-hidden="true">↗</span></a
+            >
+          </div>
+          <p class="project-summary">{{ project.summary }}</p>
+          <ul v-if="project.highlights?.length" class="project-highlights">
+            <li v-for="highlight in project.highlights" :key="highlight">{{ highlight }}</li>
+          </ul>
+          <ul class="project-tags" aria-label="Technologies and focus areas">
+            <li class="tag" v-for="tag in project.tags" :key="tag">{{ tag }}</li>
+          </ul>
+          <div class="project-visual" :class="{ 'project-visual--image': project.image }">
+            <img
+              v-if="project.image"
+              :src="project.image"
+              :alt="`${project.projectName} website preview`"
+              loading="lazy"
+              decoding="async"
+            />
+            <div v-else class="project-placeholder" aria-hidden="true">
+              <span>{{ project.client }}</span>
+              <strong>{{ project.visualLabel }}</strong>
+              <small>{{ project.tags[0] }} · Selected work</small>
+            </div>
+          </div>
+        </article>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
-
 type ProjectItem = {
-    projectName: string
-    link: string
-    developedBy: string
-    client: string
-    summary: string
-    tags: string[]
-    previewImage?: string
+  projectName: string
+  client: string
+  role: string
+  link: string
+  summary: string
+  tags: string[]
+  visualLabel: string
+  image?: string
+  highlights?: string[]
 }
 
-const fallbackImage = '/images/commingsoon.jpg'
-const featuredProjects = ref<ProjectItem[]>([
-    {
-        projectName: 'Dabur International',
-        developedBy: '<a href="https://luxeveda.com/">Luxeveda</a>',
-        client: 'Dabur International',
-        link: 'https://www.daburinternational.com/',
-        summary: 'An overview of how we achieved a multilingual and multi-regional site.',
-        tags: ['Nuxt js', 'Graphql', 'Multi Language', 'Multi Region']
-    },
-    {
-        projectName: 'Praan.io',
-        developedBy: '<a href="https://luxeveda.com/">Luxeveda</a>',
-        client: 'Praan',
-        link: 'https://praan.io/',
-        summary: 'Experience a sophisticated and user-friendly interface with Praan website.',
-        tags: ['Vue js', 'GSAP']
-    },
-    {
-        projectName: 'Godrej Properties',
-        developedBy: '<a href="https://luxeveda.com/">Luxeveda</a>',
-        client: 'Godrej Properties',
-        link: 'https://www.godrejproperties.com/',
-        summary: 'A modern approach to chemical industry solutions.',
-        tags: ['Vue js', 'Django', 'Python', 'SSO', 'Multi User Access', 'internal Platform']
-    },
-    {
-        projectName: 'Luxeveda',
-        developedBy: '<a href="https://luxeveda.com/">Luxeveda</a>',
-        client: 'Luxeveda',
-        link: 'https://luxeveda.com/',
-        summary: 'A showcase of our expertise in crafting visually stunning and user-friendly websites.',
-        tags: ['Vue js', 'GSAP']
-    },
-    {
-        projectName: 'Pi Industries',
-        developedBy: '<a href="https://luxeveda.com/">Luxeveda</a>',
-        client: 'Pi Industries',
-        link: 'https://www.piindustries.com/',
-        summary: 'A comprehensive solution for managing and optimizing industrial operations.',
-        tags: ['Wordpress', 'GSAP', 'Multi Language']
-    },
-    {
-        projectName: 'Britania international',
-        developedBy: '<a href="https://luxeveda.com/">Luxeveda</a>',
-        client: 'Britania international',
-        link: 'https://britannia-international.com/',
-        summary: 'A modern approach to chemical industry solutions.',
-        tags: ['Wordpress', 'GSAP', 'Multi Language']
-    },
-    {
-        projectName: 'Chembon Industries',
-        developedBy: '<a href="https://luxeveda.com/">Luxeveda</a>',
-        client: 'Chembon Industries',
-        link: 'https://www.chembondindia.com/',
-        summary: 'A modern approach to chemical industry solutions.',
-        tags: ['wordpress', 'GSAP', 'Multi Language']
-    },
-    {
-        projectName: 'Chembond Water',
-        developedBy: '<a href="https://luxeveda.com/">Luxeveda</a>',
-        client: 'Chembond Water',
-        link: 'https://www.chembondwater.com/',
-        summary: 'A modern approach to chemical industry solutions.',
-        tags: ['wordpress', 'GSAP', 'Multi Language']
-    },
-    {
-        projectName: 'cohizon',
-        developedBy: '<a href="https://luxeveda.com/">Luxeveda</a>',
-        client: 'cohoizon',
-        link: 'https://www.cohizon.com/',
-        summary: 'A modern approach to chemical industry solutions.',
-        tags: ['wordpress', 'GSAP', 'DIVI 5']
-    }
-])
-
-async function fetchOgImage(project: ProjectItem) {
-    if (!project.link) return
-
-    try {
-        const response = await fetch(`https://api.microlink.io/?url=${encodeURIComponent(project.link)}&screenshot=false`)
-        const data = await response.json()
-        const imageUrl = data?.data?.image?.url || data?.data?.image || data?.data?.logo?.url
-
-        if (imageUrl) {
-            project.previewImage = imageUrl
-        }
-    } catch {
-        project.previewImage = fallbackImage
-    }
-}
-
-function handleImageError(project: ProjectItem) {
-    if (project.previewImage !== fallbackImage) {
-        project.previewImage = fallbackImage
-    }
-}
-
-onMounted(() => {
-    featuredProjects.value.forEach((project) => {
-        project.previewImage = fallbackImage
-        void fetchOgImage(project)
-    })
-})
+const featuredProjects: ProjectItem[] = [
+  {
+    projectName: 'Dabur International',
+    client: 'Dabur',
+    role: 'Frontend Developer',
+    link: 'https://www.daburinternational.com/',
+    summary:
+      'Frontend work on a multilingual Nuxt and GraphQL platform serving 18 global markets, with a focus on performance and reliable delivery.',
+    tags: ['Nuxt.js', 'GraphQL', 'i18n', 'Performance'],
+    visualLabel: 'Global web platform',
+    image: '/images/daburInternational.webp',
+    highlights: [
+      'Core Web Vitals score improved from 38 to 85+',
+      'Nuxt migration reduced initial page load by 1.2 seconds'
+    ]
+  },
+  {
+    projectName: 'Praan',
+    client: 'Praan',
+    role: 'Frontend Developer',
+    link: 'https://praan.io/',
+    summary:
+      'Built responsive interfaces for a deep-tech climate platform, with attention to interactive experiences and cross-device rendering.',
+    tags: ['Vue.js', 'GSAP', 'Responsive UI'],
+    visualLabel: 'Climate technology',
+    image: '/images/praan.webp'
+  },
+  {
+    projectName: 'Beretta Gallery USA',
+    client: 'Beretta Gallery USA',
+    role: 'Shopify Developer',
+    link: 'https://berettagalleryusa.com/',
+    summary:
+      'Developed Shopify storefront experiences for a luxury retail brand, with a focus on clear product discovery and responsive presentation.',
+    tags: ['Shopify', 'E-commerce', 'Frontend'],
+    visualLabel: 'Luxury storefront'
+  },
+  {
+    projectName: '45R USA',
+    client: '45R USA',
+    role: 'Shopify Developer',
+    link: 'https://shop45rusa.com/',
+    summary:
+      'Created modular storefront interfaces and fluid shopping interactions, keeping product browsing and page performance in focus.',
+    tags: ['Shopify', 'E-commerce', 'Performance'],
+    visualLabel: 'Commerce experience'
+  },
+  {
+    projectName: 'Pioxazon',
+    client: 'PI Industries',
+    role: 'End-to-end development & deployment',
+    link: 'https://pioxazon.piindustries.com/',
+    summary:
+      'Delivered an enterprise portal end to end, building a modular Vue.js and Tailwind CSS interface for internal asset management.',
+    tags: ['Vue.js', 'Tailwind CSS', 'Deployment'],
+    visualLabel: 'Enterprise portal'
+  }
+]
 </script>
 
 <style lang="scss" scoped>
 .container {
-    padding-top: 6rem;
+  width: 100%;
+  max-width: 80rem;
+  padding: clamp(3.5rem, 7vw, 5rem) clamp(1.25rem, 5vw, 4rem) 0 !important;
+  margin-inline: auto;
 
-    .intro {
-        padding-bottom: 3rem;
+  .intro {
+    width: 100%;
+    max-width: 56rem;
+    padding-bottom: 2rem;
 
-        h1 {
-            -webkit-font-smoothing: antialiased;
-            font-size: clamp(2.4rem, 5vw, 3.4rem);
-            font-style: normal;
-            font-weight: 800 !important;
-            line-height: 1.05;
-            letter-spacing: -0.03em;
-            text-align: left;
-            margin: 0;
-        }
-
-        .faint {
-            color: var(--text20) !important;
-        }
+    .eyebrow {
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      line-height: 1.5;
+      text-transform: uppercase;
     }
 
-    .workHistory {
-        .project-card-wrap {
-            margin-bottom: 1.5rem;
-            display: flex;
-        }
-
-        .project-card {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            padding: 1.4rem;
-            border-radius: 1.25rem;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.04);
-            transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 320ms ease;
-            will-change: transform;
-
-            &:hover {
-                transform: translateY(-4px);
-                box-shadow: 0 18px 45px rgba(0, 0, 0, 0.08);
-            }
-        }
-
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.6rem;
-            margin: 0 0 1rem;
-
-            .tag {
-                padding: 0.45rem 0.8rem;
-                border-radius: 999px;
-                background-color: var(--bg1);
-                white-space: nowrap;
-
-                p {
-                    font-size: 0.82rem;
-                    color: var(--text80);
-                }
-            }
-        }
-
-        h3 {
-            margin: 0.25rem 0 0;
-        }
-
-        .imgBackground {
-            transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 320ms ease;
-            min-height: clamp(12rem, 24vw, 16rem);
-            height: clamp(12rem, 24vw, 16rem);
-            background: linear-gradient(135deg, var(--bg1), var(--bg2));
-            margin: 1.5rem 0 0;
-            border-radius: 1rem;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            will-change: transform;
-            flex: 1;
-
-            a {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                width: 100%;
-                height: 100%;
-            }
-
-            img {
-                object-fit: contain;
-                width: min(78%, 680px);
-                border-radius: 0.75rem;
-                transform: scale(1);
-                transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
-            }
-
-            &:hover img {
-                transform: scale(1.01);
-            }
-        }
+    h2 {
+      margin: 0.5rem 0;
+      color: var(--text);
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      line-height: 1.1;
+      letter-spacing: -0.05em;
     }
+
+    .section-copy {
+      max-width: 42rem;
+    }
+  }
+
+  .workHistory {
+    .project-card-wrap {
+      margin-bottom: 1.5rem;
+      display: flex;
+    }
+
+    .project-card {
+      width: 100%;
+      min-width: 0;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: 1.4rem;
+      border-radius: 1.25rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      transition:
+        transform 260ms ease,
+        border-color 260ms ease;
+
+      &:hover {
+        transform: translateY(-3px);
+        border-color: var(--accent);
+      }
+    }
+
+    .project-heading {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+
+      > div {
+        min-width: 0;
+      }
+    }
+
+    .project-role {
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      line-height: 1.5;
+      text-transform: uppercase;
+    }
+
+    h3 {
+      margin: 0.3rem 0 0;
+      color: var(--text);
+      font-size: clamp(1.3rem, 2vw, 1.65rem);
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.03em;
+    }
+
+    .project-link {
+      flex: 0 0 auto;
+      color: var(--text);
+      font-size: 0.85rem;
+      text-decoration: underline;
+      text-underline-offset: 0.25em;
+    }
+
+    .project-summary {
+      margin: 1rem 0;
+      overflow-wrap: anywhere;
+    }
+
+    .project-highlights {
+      display: grid;
+      gap: 0.4rem;
+      margin: 0 0 1rem;
+      padding-left: 1.1rem;
+
+      li {
+        color: var(--text80);
+        font-size: 0.9rem;
+        font-weight: 500;
+        line-height: 1.5;
+      }
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin: auto 0 0.75rem;
+      padding-top: 0.5rem;
+      padding-left: 0;
+      list-style: none;
+
+      .tag {
+        padding: 0.35rem 0.65rem;
+        border-radius: 999px;
+        background-color: var(--bg1);
+        color: var(--text80);
+        font-size: 0.78rem;
+        font-weight: 500;
+      }
+    }
+
+    .project-visual {
+      display: grid;
+      min-height: 0;
+      aspect-ratio: 16 / 9;
+      margin-top: 0.75rem;
+      border-radius: 1rem;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 85% 20%, rgba(166, 75, 55, 0.24), transparent 35%),
+        linear-gradient(135deg, var(--bg1), var(--bg2));
+
+      img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .project-placeholder {
+        display: flex;
+        min-height: 0;
+        flex-direction: column;
+        justify-content: flex-end;
+        gap: 0.5rem;
+        padding: 1.5rem;
+
+        span,
+        small {
+          color: var(--text50);
+          font-size: 0.8rem;
+          font-weight: 600;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+        }
+
+        strong {
+          max-width: 13ch;
+          color: var(--text);
+          font-size: clamp(1.8rem, 4vw, 2.8rem);
+          font-weight: 700;
+          line-height: 1;
+          letter-spacing: -0.05em;
+        }
+      }
+    }
+  }
 }
 
 @media (max-width: 600px) {
-    .container {
-        padding-top: 3rem;
+  .container {
+    padding-top: 3.5rem !important;
 
-        .intro {
-            padding-bottom: 1.5rem;
-        }
-
-        .workHistory {
-            .project-card {
-                padding: 1.1rem;
-            }
-
-            .imgBackground {
-                min-height: 12rem;
-                height: 12rem;
-            }
-        }
+    .intro {
+      padding-bottom: 1.5rem;
     }
+
+    .workHistory {
+      .project-card {
+        padding: 1.1rem;
+      }
+
+      .project-heading {
+        flex-direction: column;
+      }
+
+      .project-visual .project-placeholder {
+        padding: 1.1rem;
+      }
+    }
+  }
+}
+
+@media (min-width: 601px) and (max-width: 959px) {
+  .container {
+    .workHistory {
+      .project-card {
+        padding: 1.2rem;
+      }
+
+      .project-heading {
+        flex-wrap: wrap;
+      }
+    }
+  }
 }
 </style>

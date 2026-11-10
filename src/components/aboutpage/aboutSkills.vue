@@ -1,100 +1,160 @@
 <template>
-    <v-container fluid class="mainContainer">
-        <div class="divider"> </div>
-        <v-row>
-            <v-col cols="12" class="intro">
-                <h1 class="faint">
-                    Skills Honed
-                </h1>
-            </v-col>
-        </v-row>
-        <v-row class="mainRow">
-            <v-col cols="12" md="6" lg="6" xl="4" v-for="skill in skills" class="mainCol" :key="skill.name">
-                <img :src="getSkillImage(skill.website)" :alt="skill.name" class="skill-image" />
-                <h3>{{ skill.name }}</h3>
-            </v-col>
-        </v-row>
-    </v-container>
+  <v-container fluid class="skills-section" aria-labelledby="skills-title">
+    <div class="section-heading" data-aos="fade-up">
+      <p class="eyebrow">Toolkit</p>
+      <h2 id="skills-title">Tools for the whole stack.</h2>
+    </div>
+    <v-row>
+      <v-col
+        v-for="(group, index) in skillGroups"
+        :key="group.name"
+        cols="12"
+        md="6"
+        class="skill-column"
+        data-aos="fade-up"
+        :data-aos-delay="index * 70"
+      >
+        <section class="skill-card" :aria-labelledby="`skill-group-${index}`">
+          <h3 :id="`skill-group-${index}`">{{ group.name }}</h3>
+          <ul>
+            <li v-for="skill in group.skills" :key="skill">{{ skill }}</li>
+          </ul>
+        </section>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script setup lang="ts">
-const skills = [
-    { name: 'Front End Development', website: 'developer.mozilla.org' },
-    { name: 'Vue.Js', website: 'vuejs.org' },
-    { name: 'React', website: 'react.dev' },
-    { name: 'HTML5', website: 'developer.mozilla.org' },
-    { name: 'CSS3', website: 'developer.mozilla.org' },
-    { name: 'SASS', website: 'sass-lang.com' },
-    { name: 'Javascript', website: 'www.javascript.com' },
-    { name: 'Progressive Web Apps', website: 'web.dev' },
-    { name: 'Rest API', website: 'developer.mozilla.org' },
-    { name: 'Bootstrap', website: 'getbootstrap.com' },
-    { name: 'Node Js', website: 'nodejs.org' },
-    { name: 'Express Js', website: 'expressjs.com' },
-    { name: 'MongoDB', website: 'mongodb.com' },
-    { name: 'MySQL', website: 'mysql.com' },
-    { name: 'Wordpress', website: 'wordpress.org' },
-    { name: 'GSAP', website: 'greensock.com' },
-    { name: 'Nuxt Js', website: 'nuxt.com' },
-    { name: 'Graphql', website: 'graphql.org' },
-    { name: 'Python', website: 'python.org' },
-    { name: 'Django', website: 'djangoproject.com' },
+const skillGroups = [
+  {
+    name: 'Frontend engineering',
+    skills: [
+      'Vue.js',
+      'React.js',
+      'Nuxt.js',
+      'Next.js',
+      'TypeScript',
+      'JavaScript',
+      'HTML5',
+      'CSS3',
+      'SCSS'
+    ]
+  },
+  {
+    name: 'UI, design & delivery',
+    skills: [
+      'Tailwind CSS',
+      'Vuetify',
+      'Bootstrap',
+      'Material UI',
+      'Figma',
+      'GSAP',
+      'Vite',
+      'Webpack',
+      'CI/CD'
+    ]
+  },
+  {
+    name: 'State, APIs & data',
+    skills: [
+      'Pinia',
+      'Vuex',
+      'Zustand',
+      'Context API',
+      'Node.js',
+      'REST APIs',
+      'GraphQL',
+      'PostgreSQL',
+      'MongoDB'
+    ]
+  },
+  {
+    name: 'Architecture & AI',
+    skills: [
+      'AI / LLM integrations',
+      'System design',
+      'Micro-frontends',
+      'Django REST Framework',
+      'Core Web Vitals',
+      'SEO',
+      'SSR'
+    ]
+  }
 ]
-
-function getSkillImage(website: string) {
-    return `https://www.google.com/s2/favicons?domain=${website}&sz=128`
-}
 </script>
 
 <style lang="scss" scoped>
-.mainContainer {
-    .intro {
-        padding-bottom: 7.5rem;
+.skills-section {
+  width: 100%;
+  max-width: 80rem;
+  padding: clamp(3.5rem, 7vw, 6rem) clamp(1.25rem, 5vw, 4rem) 4rem !important;
+  margin-inline: auto;
+
+  .section-heading {
+    margin-bottom: 1.5rem;
+  }
+
+  .eyebrow {
+    color: var(--accent);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    line-height: 1.5;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    margin: 0.5rem 0 1rem;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.1;
+    letter-spacing: -0.05em;
+  }
+
+  .skill-card {
+    height: 100%;
+    padding: 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    background: var(--surface);
+
+    h3 {
+      margin: 0 0 1rem;
+      color: var(--text);
+      font-size: 1.1rem;
+      font-weight: 700;
+      overflow-wrap: anywhere;
     }
 
-    .intro {
-        padding-bottom: 7.5rem;
-
-        h1 {
-            -webkit-font-smoothing: antialiased;
-            font-size: 88px;
-            font-style: normal;
-            font-weight: 800 !important;
-            line-height: 107px;
-            letter-spacing: 0em;
-            text-align: left;
-            margin: 0;
-        }
-
-        .faint {
-            color: var(--text20) !important;
-        }
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      padding: 0;
+      list-style: none;
     }
 
-    .mainCol {
-        display: flex;
-        align-items: center;
-
-        .skill-image {
-            width: 100px;
-            height: 100px;
-            object-fit: contain;
-            margin-right: 3rem;
-            filter: invert(var(--invertedImg));
-        }
+    li {
+      max-width: 100%;
+      padding: 0.4rem 0.7rem;
+      border-radius: 999px;
+      background: var(--bg1);
+      color: var(--text80);
+      font-size: 0.85rem;
+      font-weight: 500;
+      overflow-wrap: anywhere;
     }
+  }
 }
 
 @media (max-width: 600px) {
-    .mainContainer {
-        .intro {
-            padding: 0;
-        }
+  .skills-section {
+    padding-top: 3.5rem !important;
+    padding-bottom: 3rem !important;
 
-        .mainRow {
-            margin-top: 30px;
-            flex-direction: column;
-        }
+    .skill-card {
+      padding: 1.2rem;
     }
+  }
 }
 </style>

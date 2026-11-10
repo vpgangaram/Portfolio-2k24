@@ -1,13 +1,78 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <link rel="icon" href="https://img.icons8.com/?size=100&id=38648&format=png&color=000000">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vinayak P G</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#101010" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta
+      name="description"
+      content="Vinayak P G is a Senior Developer in Web and AI based in Bengaluru, India. Explore his work in frontend architecture, AI integrations, and end-to-end product delivery."
+    />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="canonical" href="https://vinayakpg.netlify.app/" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_IN" />
+    <meta property="og:site_name" content="Vinayak P G" />
+    <meta property="og:title" content="Vinayak P G | Senior Developer - Web & AI" />
+    <meta
+      property="og:description"
+      content="Senior Developer building thoughtful web experiences, AI-powered products, and end-to-end solutions."
+    />
+    <meta property="og:url" content="https://vinayakpg.netlify.app/" />
+    <meta property="og:image" content="https://vinayakpg.netlify.app/vinayakProfilePic.webp" />
+    <meta property="og:image:alt" content="Vinayak P G, Senior Developer in Web and AI" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Vinayak P G | Senior Developer - Web & AI" />
+    <meta
+      name="twitter:description"
+      content="Senior Developer building thoughtful web experiences, AI-powered products, and end-to-end solutions."
+    />
+    <meta name="twitter:image" content="https://vinayakpg.netlify.app/vinayakProfilePic.webp" />
+    <title>Vinayak P G | Senior Developer - Web & AI</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Vinayak P G",
+        "jobTitle": "Senior Developer - Web and AI",
+        "url": "https://vinayakpg.netlify.app/",
+        "image": "https://vinayakpg.netlify.app/vinayakProfilePic.webp",
+        "email": "mailto:gangaramanavar@gmail.com",
+        "telephone": "+918310168918",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Bengaluru",
+          "addressCountry": "IN"
+        },
+        "sameAs": ["https://www.linkedin.com/in/vinayak-p-gangaramanavar"]
+      }
+    </script>
   </head>
   <body>
     <div id="app"></div>
+    <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="contact" />
+      <p hidden>
+        <label>Leave this field empty: <input name="bot-field" /></label>
+      </p>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <select name="inquiry">
+        <option>Job opportunity</option>
+        <option>Freelance or contract project</option>
+        <option>Consulting</option>
+        <option>Collaboration</option>
+        <option>Other development inquiry</option>
+      </select>
+      <textarea name="message"></textarea>
+    </form>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

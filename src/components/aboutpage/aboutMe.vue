@@ -1,162 +1,213 @@
 <template>
-    <v-container fluid class="container">
-        <v-row class="row1">
-            <v-col class="intro" cols="12" lg="6" md="6" sm="12">
-                <div data-aos="fade-right" data-aos-easing="ease-in-cubic" data-aos-duration="800">
-                    <h1 class="faint">
-                        Hey There,
-                    </h1>
-                    <h1>
-                        I'm <br v-if="smAndDown">Vinayak.
-                    </h1>
-                </div>
-                <p data-aos="fade-up" data-aos-easing="ease-in-cubic" data-aos-duration="800">
-                    I’m a resourceful professional who began as a curious coder, always eager to push the boundaries
-                    of
-                    what's possible on the web. My journey led me to master JavaScript, various frameworks, and
-                    Bootstrap, allowing me to quickly adapt to new technologies. Along the way, I developed a knack
-                    for
-                    crafting cutting-edge web designs and features. I thrive on solving complex code issues,
-                    ensuring
-                    every user experiences seamless and efficient interactions.
-                </p>
-                <a href="https://drive.google.com/file/d/1WI50-YLhaZ95SiNZWkS6E833-4RHniar/view?usp=sharing"
-                    target="_blank" class="social-link" data-aos="fade-up" data-aos-easing="ease-in-sine" data-aos-duration="900">
-                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                        aria-hidden="true" focusable="false" width="1em" height="1em"
-                        style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);"
-                        preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="iconify"
-                        data-icon="akar-icons:arrow-right" data-inline="false">
-                        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                            stroke-width="2" d="M4 12h16m-7-7l7 7l-7 7"></path>
-                    </svg>
-                    <p>Resume</p>
-                </a>
-            </v-col>
-            <v-col cols=""></v-col>
-            <v-col cols="12" lg="5" md="5" sm="12" data-aos-duration="800" data-aos="fade-left" data-aos-easing="ease-in-cubic">
-                <img src="/vinayakProfilePic.jpg" alt="vinayak Port folio" />
-            </v-col>
-        </v-row>
-    </v-container>
+  <v-container fluid class="container" aria-labelledby="about-title">
+    <v-row class="row1">
+      <v-col class="intro" cols="12" lg="6" md="6" sm="12">
+        <div data-aos="fade-right">
+          <p class="eyebrow">A little about me</p>
+          <h1 id="about-title">I build it end to end.</h1>
+        </div>
+        <p data-aos="fade-up">
+          I’m Vinayak P G, a Senior Developer focused on web and AI, based in Bengaluru. I enjoy
+          owning the full journey—from shaping frontend architecture and building product
+          experiences to connecting APIs, integrating AI capabilities, improving performance, and
+          shipping to production.
+        </p>
+        <a href="mailto:gangaramanavar@gmail.com" class="social-link" data-aos="fade-up">
+          <span aria-hidden="true">↗</span>
+          <span>Get in touch</span>
+        </a>
+      </v-col>
+      <v-col cols="12" lg="5" md="5" sm="12" data-aos="fade-left">
+        <img
+          src="/vinayakProfilePic.webp"
+          alt="Portrait of Vinayak P G"
+          width="1000"
+          height="1000"
+          loading="lazy"
+          decoding="async"
+        />
+      </v-col>
+    </v-row>
+    <v-row class="career-row" data-aos="fade-up" aria-labelledby="experience-title">
+      <v-col cols="12">
+        <p class="eyebrow">Experience</p>
+        <h2 id="experience-title">A path through web development.</h2>
+      </v-col>
+      <v-col cols="12" md="6">
+        <article class="career-card">
+          <p class="career-label">Current</p>
+          <h3>Senior Developer — Web &amp; AI</h3>
+          <p class="career-company">Luxeveda</p>
+          <p>
+            Grew from Web Development Executive into a senior role, contributing to web
+            architecture, AI-powered capabilities, platform performance, and delivery.
+          </p>
+        </article>
+      </v-col>
+      <v-col cols="12" md="6">
+        <article class="career-card">
+          <p class="career-label">Earlier experience</p>
+          <h3>Frontend Development Intern</h3>
+          <p class="career-company">Vtiger CRM</p>
+          <p>Started my professional journey learning and contributing to frontend development.</p>
+        </article>
+      </v-col>
+      <v-col cols="12">
+        <p class="education">
+          <strong>Education</strong>
+          Bachelor of Engineering · Don Bosco Institute of Technology, Bengaluru · 2018–2022
+        </p>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
-
-<script type="ts" setup>
-</script>
 
 <style lang="scss" scoped>
 .container {
-    padding-top: 9rem !important;
+  width: 100%;
+  max-width: 80rem;
+  padding: clamp(3.5rem, 7vw, 6rem) clamp(1.25rem, 5vw, 4rem) 0 !important;
+  margin-inline: auto;
 
-    img {
-        width: 100%;
-        object-fit: cover;
-        object-position: top;
-        max-width: 100%;
-        border-radius: 0.5rem;
-        min-height: 700px;
+  img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    object-position: top;
+    max-width: 100%;
+    border-radius: 1.25rem;
+    height: auto;
+  }
+
+  .intro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    h1 {
+      max-width: 10ch;
+      font-size: clamp(3rem, 6vw, 5rem);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.06em;
+      margin: 0;
     }
 
-    .intro {
-        // padding-bottom: 7.5rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: flex-start;
-        align-content: flex-start;
-
-        h1 {
-            -webkit-font-smoothing: antialiased;
-            font-size: 88px;
-            font-style: normal;
-            font-weight: 800 !important;
-            line-height: 107px;
-            letter-spacing: 0em;
-            text-align: left;
-            margin: 0;
-        }
-
-        .faint {
-            color: var(--text20) !important;
-        }
-
-        p {
-            padding-top: 3rem;
-        }
-
-        .social-link {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            margin-top: 50px;
-
-            p {
-                line-height: 1.5;
-                padding: 0;
-                padding-left: 30px;
-                font-size: 20px;
-                color: var(--text);
-                padding-right: 2rem;
-            }
-
-            svg {
-                scale: 1.5;
-            }
-        }
+    .eyebrow {
+      margin-bottom: 1rem;
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      line-height: 1.5;
+      text-transform: uppercase;
     }
 
-    .workHistory {
-        a {
-            border-bottom: 1px solid var(--text80);
-        }
+    p {
+      padding-top: 1.75rem;
     }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 1.75rem;
+      color: var(--text);
+      text-decoration: underline;
+      text-underline-offset: 0.3em;
+    }
+  }
+
+  .career-row {
+    margin-top: clamp(4rem, 8vw, 7rem);
+
+    .eyebrow,
+    .career-label {
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 0.5rem 0 1rem;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.1;
+      letter-spacing: -0.05em;
+    }
+
+    .career-card {
+      height: 100%;
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      background: var(--surface);
+
+      h3 {
+        margin: 0.5rem 0 0.2rem;
+        color: var(--text);
+        font-weight: 700;
+      }
+
+      .career-company {
+        margin-bottom: 0.75rem;
+        color: var(--text50);
+        font-weight: 600;
+      }
+    }
+
+    .education {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1rem;
+      margin-top: 0.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+
+      strong {
+        color: var(--text);
+      }
+    }
+  }
 }
 
 @media (max-width: 960px) {
-    .container {
-        padding-top: 4rem !important;
-
-        .row1 {
-            flex-direction: column-reverse;
-        }
-
-        img {
-            object-position: top;
-            max-width: unset;
-            min-height: 500px;
-        }
-
-        .intro {
-            a {
-                padding-top: 3rem;
-            }
-        }
+  .container {
+    .row1 > .v-col {
+      flex: 0 0 100%;
+      max-width: 100%;
     }
+
+    img {
+      max-width: min(100%, 34rem);
+    }
+
+    .intro {
+      padding-bottom: 2rem;
+    }
+  }
 }
 
 @media (max-width: 600px) {
-    .container {
-        padding-top: 2rem !important;
+  .container {
+    padding-top: 3rem !important;
 
-        .intro {
-            p {
-                padding-top: 2rem;
-            }
-
-            h1 {
-                font-size: 3rem;
-                line-height: 1.25em;
-            }
-
-            .social-link {
-                padding-top: 2rem;
-
-                p {
-                    font-size: 16px;
-                }
-            }
-        }
+    .intro {
+      h1 {
+        font-size: clamp(2.75rem, 12vw, 4rem);
+      }
     }
+
+    .career-row {
+      margin-top: 3rem;
+
+      .career-card {
+        padding: 1.2rem;
+      }
+    }
+  }
 }
 </style>

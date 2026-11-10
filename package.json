@@ -7,7 +7,7 @@
     "dev": "vite --port 3000",
     "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",
-    "build-only": "vite build",
+    "build-only": "vite build && node scripts/prerender-about.mjs",
     "type-check": "vue-tsc --build --force",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "format": "prettier --write src/"

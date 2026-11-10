@@ -1,138 +1,212 @@
 <template>
-    <v-container fluid class="container">
-        <v-row data-aos="fade-up" data-aos-duration="1000">
-            <v-col class="intro">
-                <p class="eyebrow">Crafting thoughtful digital products</p>
-                <h1 class="faint">Vinayak P G.</h1>
-                <h1 class="headline">Web <br v-if="smAndDown">Developer.</h1>
-            </v-col>
-        </v-row>
-        <v-row data-aos="fade-up" data-aos-duration="1000" data-aos-delay="220" class="workHistory">
-            <v-col cols="12" sm="6" class="history-card">
-                <h4>Past</h4>
-                <p>Front-end Developer at <br /><a href="https://www.vtiger.com/" target="_blank">Vtiger CRM</a></p>
-            </v-col>
-            <v-col cols="12" sm="6" class="history-card">
-                <h4>Current</h4>
-                <p>Web Developer at <br /><a href="https://luxeveda.com/" target="_blank">Luxeveda Brand Services</a>
-                </p>
-            </v-col>
-        </v-row>
-    </v-container>
+  <v-container fluid class="container">
+    <v-row data-aos="fade-up">
+      <v-col class="intro">
+        <p class="eyebrow">Senior Developer · Web &amp; AI · Bengaluru, India</p>
+        <h1>Building for the web.<br /><span>From idea to production.</span></h1>
+        <p class="summary">
+          I’m Vinayak P G, a Senior Developer focused on web and AI. I bring products end to end—
+          from frontend architecture and AI integrations to APIs, performance, and deployment.
+        </p>
+        <div class="hero-actions">
+          <a class="primary-link" href="#projects">Explore my work</a>
+          <a class="text-link" href="mailto:gangaramanavar@gmail.com">Let’s talk</a>
+        </div>
+      </v-col>
+    </v-row>
+    <v-row class="workHistory" data-aos="fade-up" data-aos-delay="100">
+      <v-col cols="12" sm="6" class="history-card">
+        <p class="card-label">Current</p>
+        <h2>Senior Developer — Web &amp; AI</h2>
+        <p>
+          <a href="https://luxeveda.com/" target="_blank" rel="noopener noreferrer">Luxeveda</a>
+        </p>
+      </v-col>
+      <v-col cols="12" sm="6" class="history-card">
+        <p class="card-label">Earlier experience</p>
+        <h2>Frontend Development Intern</h2>
+        <p>
+          <a href="https://www.vtiger.com/" target="_blank" rel="noopener noreferrer">Vtiger CRM</a>
+        </p>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
-
-<script setup lang="ts">
-import { useDisplay } from 'vuetify'
-
-const { smAndDown } = useDisplay()
-</script>
 
 <style lang="scss" scoped>
 .container {
-    padding-top: 8.5rem !important;
-    padding-bottom: 2rem;
+  width: 100%;
+  max-width: 80rem;
+  padding: clamp(3.5rem, 9vw, 7.5rem) clamp(1.25rem, 5vw, 4rem) 3rem !important;
+  margin-inline: auto;
+  padding-bottom: 3rem;
 
-    .intro {
-        padding-bottom: 5rem;
-        position: relative;
+  .intro {
+    max-width: 58rem;
+    padding-bottom: 4rem;
+    position: relative;
 
-        .eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-            color: var(--text50);
-            font-size: 0.9rem;
-            letter-spacing: 0.16em;
-            text-transform: uppercase;
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.25rem;
+      color: var(--accent);
+      font-size: clamp(0.7rem, 1.4vw, 0.85rem);
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      line-height: 1.5;
+      text-transform: uppercase;
 
-            &::before {
-                content: '';
-                width: 2.4rem;
-                height: 1px;
-                background: linear-gradient(90deg, transparent, var(--text50));
-            }
-        }
-
-        h1 {
-            -webkit-font-smoothing: antialiased;
-            font-size: clamp(3.4rem, 7vw, 5.5rem);
-            font-style: normal;
-            font-weight: 800 !important;
-            line-height: 0.95;
-            letter-spacing: -0.04em;
-            text-align: left;
-            margin: 0;
-            will-change: transform, opacity;
-            animation: riseIn 900ms cubic-bezier(0.16, 1, 0.3, 1) both;
-        }
-
-        .headline {
-            margin-top: 0.25rem;
-        }
-
-        .faint {
-            color: var(--text20) !important;
-            opacity: 0.9;
-        }
+      &::before {
+        content: '';
+        width: 1.75rem;
+        height: 1px;
+        margin-right: 0.7rem;
+        background: currentColor;
+      }
     }
 
-    .workHistory {
-        .history-card {
-            padding: 1.1rem 1.2rem;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 1rem;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.04));
-            backdrop-filter: blur(18px);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
-            transition: transform 260ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 260ms ease;
-            will-change: transform;
+    h1 {
+      max-width: 15ch;
+      font-size: clamp(2.75rem, 7.2vw, 6.5rem);
+      font-weight: 800;
+      line-height: 0.98;
+      letter-spacing: -0.06em;
+      margin: 0;
 
-            &:hover {
-                transform: translateY(-4px);
-                box-shadow: 0 16px 45px rgba(0, 0, 0, 0.08);
-            }
+      span {
+        color: var(--text50);
+      }
+    }
+
+    .summary {
+      max-width: 42rem;
+      margin-top: 1.75rem;
+      font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+      line-height: 1.8;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .primary-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 3rem;
+      padding: 0.75rem 1.25rem;
+      border-radius: 999px;
+      background: var(--text);
+      color: var(--main);
+      transition:
+        transform 220ms ease,
+        opacity 220ms ease;
+
+      &:hover {
+        transform: translateY(-2px);
+        opacity: 0.84;
+      }
+    }
+
+    .text-link {
+      color: var(--text);
+      text-underline-offset: 0.3em;
+      text-decoration: underline;
+    }
+  }
+
+  .workHistory {
+    align-items: stretch;
+
+    .history-card {
+      display: flex;
+      min-width: 0;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 1.35rem 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      background: var(--surface);
+      transition:
+        transform 260ms ease,
+        border-color 260ms ease;
+
+      &:hover {
+        transform: translateY(-3px);
+        border-color: var(--accent);
+      }
+
+      .card-label {
+        color: var(--accent);
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      h2 {
+        max-width: 100%;
+        margin: 0.75rem 0 0.25rem;
+        color: var(--text);
+        font-size: clamp(1.2rem, 2vw, 1.45rem);
+        line-height: 1.35;
+        overflow-wrap: anywhere;
+      }
+
+      a {
+        color: var(--text50);
+        text-decoration: underline;
+        text-underline-offset: 0.2em;
+
+        &:hover {
+          color: var(--text);
         }
-
-        a {
-            display: inline-block;
-            margin-top: 0.25rem;
-            border-bottom: 1px solid var(--text80);
-            transition: border-color 220ms ease, color 220ms ease;
-
-            &:hover {
-                color: var(--text);
-                border-color: var(--text);
-            }
-        }
+      }
     }
-}
-
-@keyframes riseIn {
-    from {
-        opacity: 0;
-        transform: translate3d(0, 18px, 0);
-    }
-
-    to {
-        opacity: 1;
-        transform: translate3d(0, 0, 0);
-    }
+  }
 }
 
 @media (max-width: 600px) {
-    .container {
-        padding-top: 5.5rem !important;
+  .container {
+    padding-top: 3.25rem !important;
+    padding-bottom: 2rem;
 
-        .intro {
-            padding-bottom: 3rem;
-        }
+    .intro {
+      padding-bottom: 2rem;
 
-        .workHistory {
-            .history-card {
-                margin-bottom: 0.75rem;
-            }
-        }
+      h1 {
+        font-size: clamp(2.55rem, 12vw, 3.5rem);
+        line-height: 1;
+      }
+
+      .hero-actions {
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
     }
+
+    .workHistory {
+      .history-card {
+        padding: 1.1rem;
+      }
+    }
+  }
+}
+
+@media (min-width: 601px) and (max-width: 960px) {
+  .container {
+    padding-top: 5rem !important;
+
+    .intro {
+      h1 {
+        font-size: clamp(3.25rem, 7vw, 5rem);
+      }
+    }
+  }
 }
 </style>
